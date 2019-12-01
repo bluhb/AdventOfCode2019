@@ -10,7 +10,7 @@ list<int> data;
 int fuel = 0;
 int temp;
 
-int fuelNeeded(int weight){
+int FuelNeeded(int weight){
     int fuel = 0;
     fuel = weight/3 -2;
     if (fuel < 0){
@@ -20,9 +20,8 @@ int fuelNeeded(int weight){
     return (fuel);
 }
 
-
-int main(){
-    ifstream myfile("input.txt");
+void ReadFile(string fileName){
+    ifstream myfile(fileName);
     
     if (myfile.is_open()){
         cout << "file openend" << endl;
@@ -30,24 +29,23 @@ int main(){
             line = "";
             temp = 0;
             getline(myfile, line); //read line
-            cout << line << " ";
             istringstream tempint (line); //convert string to int
             tempint >> temp;
 
             data.push_back(temp); //save data
         }
-        cout << endl;
         myfile.close();
     }
     else {cout << "No file found";}
-    
+}
+
+int main(){
+    ReadFile("input.txt");    
     fuel = 0;
-    cout << "size: " << data.size();
     for (int weight : data){
-        cout << "weight: " << weight << endl;
         int addedFuel = -1;
         while (!addedFuel == 0){
-            addedFuel = fuelNeeded(weight);
+            addedFuel = FuelNeeded(weight);
             weight = addedFuel;
             fuel = fuel + addedFuel;
         }
