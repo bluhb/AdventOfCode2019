@@ -50,13 +50,9 @@ void multOP(int Index){
 int main(){
     readFile("input.txt");
     for (int i = 0; i < 117; i = i + 4){
-        cout << Data[i] << " ";
         if (Data[i] == 99){
             cout << "Done" << endl;
-            for (int x=0; x < 117; ++x){
-                cout << Data[x] << " ";
-            }
-            cout << endl << Data[0];
+            cout << "Value at index 0: " << Data[0];
             return 0;
         }else if (Data[i] == 1){
             addOP(i);
