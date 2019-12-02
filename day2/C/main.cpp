@@ -7,6 +7,7 @@
 using namespace std;
 
 int Data[117];
+int Answer = 19690720;
 
 void readFile(string FileName){ //Read in the data file
     ifstream MyFile(FileName);
@@ -14,7 +15,6 @@ void readFile(string FileName){ //Read in the data file
     int Temp;
     int i = 0;
     if (MyFile.is_open()){
-        cout << "file openend" << endl;
         while (! MyFile.eof()){
             Line = "";
             Temp = 0;
@@ -25,6 +25,8 @@ void readFile(string FileName){ //Read in the data file
             i++;
         }
         MyFile.close();
+        Data[1] = 12;
+        Data[2] = 2;
     }
     else {cout << "No file found";}
 }
@@ -48,16 +50,26 @@ void multOP(int Index){
 }
 
 int main(){
-    readFile("input.txt");
-    for (int i = 0; i < 117; i = i + 4){
-        if (Data[i] == 99){
-            cout << "Done" << endl;
-            cout << "Value at index 0: " << Data[0];
-            return 0;
-        }else if (Data[i] == 1){
-            addOP(i);
-        }else if(Data[i] == 2){
-            multOP(i);
+    for (int x = 0; x <= 99; x++){
+        for (int y = 0; y <= 99; y++){
+            readFile("input.txt");
+            for (int i = 0; i < 117; i = i + 4){
+                Data[1] = x;
+                Data[2] = y;
+                if (Data[i] == 99){
+                    break;
+                }else if (Data[i] == 1){
+                    addOP(i);
+                }else if(Data[i] == 2){
+                    multOP(i);
+                }
+            }
+            if (Data[0] == Answer){
+                cout << "Noun: " << Data[1] << " Verb: " << Data[2] << endl;
+                cout << 100*Data[1] + Data[2];
+                return 0;
+    
+            }
         }
     }
     return 0;
