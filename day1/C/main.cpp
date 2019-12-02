@@ -5,24 +5,22 @@
 #include <list>
 
 using namespace std;
-string line;
-list<int> data;
-int fuel = 0;
-int temp;
+int fuel;
 
-int FuelNeeded(int weight){
-    int fuel = 0;
-    fuel = weight/3 -2;
-    if (fuel < 0){
+int FuelNeeded(int weight){ //calculate needed fuel for given weight
+    int f = 0;
+    f = weight/3 -2;
+    if (f < 0){
         return 0;
     }
-    weight = weight - fuel;
-    return (fuel);
+    return (f);
 }
 
-void ReadFile(string fileName){
+list<int> ReadFile(string fileName){ //Read in the data file
     ifstream myfile(fileName);
-    
+    list<int> data;
+    string line;
+    int temp;
     if (myfile.is_open()){
         cout << "file openend" << endl;
         while (! myfile.eof()){
@@ -37,14 +35,15 @@ void ReadFile(string fileName){
         myfile.close();
     }
     else {cout << "No file found";}
+    return (data);
 }
 
 int main(){
-    ReadFile("input.txt");    
+    list<int> data = ReadFile("input.txt");    
     fuel = 0;
-    for (int weight : data){
+    for (int weight : data){ //for all given weights calculate the needed fuel
         int addedFuel = -1;
-        while (!addedFuel == 0){
+        while (!addedFuel == 0){ //Keep calculating needed fuel for all the fuel that is needed.
             addedFuel = FuelNeeded(weight);
             weight = addedFuel;
             fuel = fuel + addedFuel;
@@ -53,4 +52,3 @@ int main(){
     cout << "fuel needed: " << fuel << endl;
     return 0;
 }
-

@@ -22,6 +22,7 @@ def main():
             AddFuel = fuelNeeded(int(Weight))
             TotalFuel += AddFuel
             Weight = AddFuel
+            AddFuel = 0
 
     print(TotalFuel)
     return None
