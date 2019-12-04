@@ -60,7 +60,7 @@ void add(char Dir, int Distance, bool CheckIntersection){
 
         if (CheckIntersection && (Coordinates1.count(New) > 0)){
             Intersections.insert(New);
-            std::cout << "Intersections found at: " << New[0] << ":" << New[1] << std::endl;
+            //std::cout << "Intersections found at: " << New[0] << ":" << New[1] << std::endl;
         }else if (!CheckIntersection){
             Coordinates1.insert(New);
         }
